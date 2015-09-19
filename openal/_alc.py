@@ -1,10 +1,7 @@
 import ctypes
-import ctypes.util
+from . import loader
 
-lib_path = ctypes.util.find_library('openal')
-if lib_path is None:
-    raise ImportError('openal library not found')
-lib = ctypes.CDLL(lib_path)
+lib = loader.load_lib('openal')
 
 ALC_FALSE = 0
 ALC_TRUE = 1

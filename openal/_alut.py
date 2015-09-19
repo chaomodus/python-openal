@@ -1,10 +1,7 @@
 import ctypes
-import ctypes.util
+from . import loader
 
-lib_path = ctypes.util.find_library('alut')
-if lib_path is None:
-    raise ImportError('alut library not found')
-lib = ctypes.CDLL(lib_path)
+lib = loader.load_lib('alut')
 
 ERROR_NO_ERROR = 0
 ERROR_OUT_OF_MEMORY = 0x200
