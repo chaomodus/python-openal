@@ -42,12 +42,15 @@ for k, v in locals().items():
     errors[v] = k[len('error '):]
 
 class ALUTError(Exception):
-    pass
+    def __init__(self, message, errno):
+        Exception.__init__(self, message)
+        self.errno = errno
 
 def check_error(result, func, arguments):
+    errno = ctypes.get_errno()
     err = GetError()
     if err:
-        raise ALUTError, errors[err]
+        raise ALUTError(errors[err], errno)
     return result
 
 Init = lib.alutInit

@@ -1,7 +1,13 @@
+import os
 import ctypes
 import ctypes.util
 
-lib_path = ctypes.util.find_library('openal')
+openallib = 'openal'
+
+if os.name == 'nt':
+    openallib = 'openal32'
+
+lib_path = ctypes.util.find_library(openallib)
 if lib_path is None:
     raise ImportError('openal library not found')
 lib = ctypes.CDLL(lib_path)
