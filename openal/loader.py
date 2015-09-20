@@ -9,7 +9,6 @@ suffix = ".so"
 infixes = ['', ]
 
 if os.name == 'nt':
-    loader = ctypes.WinDLL
     suffix = ".dll"
     infixes = ['', '32', '64']
 
